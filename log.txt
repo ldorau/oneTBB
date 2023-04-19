@@ -1,0 +1,712 @@
++ set +e
++ date
+Mon Apr 17 01:24:38 PM CEST 2023
++ /usr/bin/valgrind --leak-check=full --show-leak-kinds=all --log-file=/home/ldorau/work/oneTBB/build/memcheck/memcheck-test_malloc_compliance.log -v /home/ldorau/work/oneTBB/build/gnu_12.2_cxx11_64_debug/test_malloc_compliance
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases:       1 |       1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1511209 | 1511209 passed | 0 failed |
+[doctest] Status: SUCCESS!
+
+real	13m54,185s
+user	13m45,297s
+sys	0m8,506s
++ date
+Mon Apr 17 01:38:32 PM CEST 2023
++ /usr/bin/valgrind --leak-check=full --show-leak-kinds=all --log-file=/home/ldorau/work/oneTBB/build/memcheck/memcheck-test_malloc_init_shutdown.log -v /home/ldorau/work/oneTBB/build/gnu_12.2_cxx11_64_debug/test_malloc_init_shutdown
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 3 | 3 passed | 0 failed | 0 skipped
+[doctest] assertions: 8 | 8 passed | 0 failed |
+[doctest] Status: SUCCESS!
+
+real	0m1,777s
+user	0m1,726s
+sys	0m0,048s
++ date
+Mon Apr 17 01:38:34 PM CEST 2023
++ /usr/bin/valgrind --leak-check=full --show-leak-kinds=all --log-file=/home/ldorau/work/oneTBB/build/memcheck/memcheck-test_malloc_lib_unload.log -v /home/ldorau/work/oneTBB/build/gnu_12.2_cxx11_64_debug/test_malloc_lib_unload
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases:  1 |  1 passed | 0 failed | 0 skipped
+[doctest] assertions: 57 | 57 passed | 0 failed |
+[doctest] Status: SUCCESS!
+
+real	0m1,588s
+user	0m1,538s
+sys	0m0,048s
++ date
+Mon Apr 17 01:38:36 PM CEST 2023
++ /usr/bin/valgrind --leak-check=full --show-leak-kinds=all --log-file=/home/ldorau/work/oneTBB/build/memcheck/memcheck-test_malloc_overload_disable.log -v /home/ldorau/work/oneTBB/build/gnu_12.2_cxx11_64_debug/test_malloc_overload_disable
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 0 | 0 passed | 0 failed | 0 skipped
+[doctest] assertions: 0 | 0 passed | 0 failed |
+[doctest] Status: SUCCESS!
+
+real	0m1,120s
+user	0m1,060s
+sys	0m0,058s
++ date
+Mon Apr 17 01:38:37 PM CEST 2023
++ /usr/bin/valgrind --leak-check=full --show-leak-kinds=all --log-file=/home/ldorau/work/oneTBB/build/memcheck/memcheck-test_malloc_pools.log -v /home/ldorau/work/oneTBB/build/gnu_12.2_cxx11_64_debug/test_malloc_pools
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases:     14 |     14 passed | 0 failed | 0 skipped
+[doctest] assertions: 675252 | 675252 passed | 0 failed |
+[doctest] Status: SUCCESS!
+
+real	1m20,152s
+user	1m15,934s
+sys	0m4,476s
++ date
+Mon Apr 17 01:39:57 PM CEST 2023
++ /usr/bin/valgrind --leak-check=full --show-leak-kinds=all --log-file=/home/ldorau/work/oneTBB/build/memcheck/memcheck-test_malloc_regression.log -v /home/ldorau/work/oneTBB/build/gnu_12.2_cxx11_64_debug/test_malloc_regression
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases:   3 |   3 passed | 0 failed | 0 skipped
+[doctest] assertions: 326 | 326 passed | 0 failed |
+[doctest] Status: SUCCESS!
+
+real	0m3,961s
+user	0m3,567s
+sys	0m0,389s
++ date
+Mon Apr 17 01:40:01 PM CEST 2023
++ /usr/bin/valgrind --leak-check=full --show-leak-kinds=all --log-file=/home/ldorau/work/oneTBB/build/memcheck/memcheck-test_malloc_shutdown_hang.log -v /home/ldorau/work/oneTBB/build/gnu_12.2_cxx11_64_debug/test_malloc_shutdown_hang
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 1 | 1 passed | 0 failed |
+[doctest] Status: SUCCESS!
+
+real	0m2,374s
+user	0m1,590s
+sys	0m0,476s
++ date
+Mon Apr 17 01:40:03 PM CEST 2023
++ /usr/bin/valgrind --leak-check=full --show-leak-kinds=all --log-file=/home/ldorau/work/oneTBB/build/memcheck/memcheck-test_malloc_used_by_lib.log -v /home/ldorau/work/oneTBB/build/gnu_12.2_cxx11_64_debug/test_malloc_used_by_lib
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases: 1 | 1 passed | 0 failed | 0 skipped
+[doctest] assertions: 6 | 6 passed | 0 failed |
+[doctest] Status: SUCCESS!
+
+real	0m1,861s
+user	0m1,791s
+sys	0m0,068s
++ date
+Mon Apr 17 01:40:05 PM CEST 2023
++ /usr/bin/valgrind --leak-check=full --show-leak-kinds=all --log-file=/home/ldorau/work/oneTBB/build/memcheck/memcheck-test_scalable_allocator.log -v /home/ldorau/work/oneTBB/build/gnu_12.2_cxx11_64_debug/test_scalable_allocator
+[doctest] doctest version is "2.4.7"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases:        6 |        6 passed | 0 failed | 0 skipped
+[doctest] assertions: 60799619 | 60799619 passed | 0 failed |
+[doctest] Status: SUCCESS!
+
+real	15m51,436s
+user	15m50,376s
+sys	0m0,492s

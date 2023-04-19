@@ -34,7 +34,7 @@ file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/memcheck)
 function(_tbb_run_memcheck test_target)
     set(target_name memcheck-${test_target})
     add_custom_target(${target_name} 
-        COMMAND ${VALGRIND_EXE} --leak-check=full --show-leak-kinds=all --log-file=${CMAKE_BINARY_DIR}/memcheck/${target_name}.log -v $<TARGET_FILE:${test_target}>)
+        COMMAND echo LDORAU:${VALGRIND_EXE} --leak-check=full --show-leak-kinds=all --log-file=${CMAKE_BINARY_DIR}/memcheck/${target_name}.log -v $<TARGET_FILE:${test_target}>)
     add_dependencies(memcheck-all ${target_name})
 endfunction()
 
