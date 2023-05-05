@@ -66,7 +66,7 @@ static std::atomic<int> liveRegions;
 
 static void *getMallocMem(intptr_t /*pool_id*/, size_t &bytes)
 {
-    void *rawPtr = malloc(bytes+sizeof(MallocPoolHeader)+1);
+    void *rawPtr = calloc(1, bytes+sizeof(MallocPoolHeader)+1);
     if (!rawPtr)
         return nullptr;
     // +1 to check working with unaligned space
@@ -310,7 +310,7 @@ class FixedPoolHeadBase : utils::NoAssign {
     char* data;
 public:
     FixedPoolHeadBase(size_t s) : size(s), used(false) {
-        data = new char[size];
+        data = new char[size]();
     }
     void *useData(size_t &bytes) {
         bool wasUsed = used.exchange(true);
@@ -479,7 +479,7 @@ static size_t currGranularity;
 static void *getGranMem(intptr_t /*pool_id*/, size_t &bytes)
 {
     REQUIRE_MESSAGE(!(bytes%currGranularity), "Region size mismatch granularity.");
-    return malloc(bytes);
+    return calloc(1, bytes);
 }
 
 static int putGranMem(intptr_t /*pool_id*/, void *ptr, size_t bytes)
@@ -514,7 +514,7 @@ static size_t putMemAll, getMemAll, getMemSuccessful;
 static void *getMemMalloc(intptr_t /*pool_id*/, size_t &bytes)
 {
     getMemAll++;
-    void *p = malloc(bytes);
+    void *p = calloc(1, bytes);
     if (p)
         getMemSuccessful++;
     return p;
