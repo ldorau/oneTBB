@@ -39,17 +39,14 @@ template <typename Predicate>
 void SpinWaitWhile(Predicate pred) {
     int count = 0;
     while (pred()) {
-        if (count < 100) {
+        if (count < 8) {
             tbb::detail::machine_pause(10);
             ++count;
-        } else if (count < 200) {
+        } else if (count < 16) {
             utils::yield();
             ++count;
         } else {
-            std::this_thread::sleep_for(std::chrono::microseconds(count/100));
-            if (count < 10000) {
-                count += 100;
-            }
+            std::this_thread::sleep_for(std::chrono::milliseconds(1));
         }
     }
 }
