@@ -31,20 +31,46 @@
     in a strict block-scoped locking pattern.  Omitting these methods permitted
     further simplification. */
 class MallocMutex : tbb::detail::no_copy {
+
+#define PTHREAD_SOLUTION 1
+
+#ifndef PTHREAD_SOLUTION
     std::atomic_flag m_flag = ATOMIC_FLAG_INIT;
+#endif
+    pthread_mutex_t g_num_mutex = PTHREAD_MUTEX_INITIALIZER;
 
     void lock() {
+#ifdef PTHREAD_SOLUTION
+        pthread_mutex_lock(&g_num_mutex);
+#else
         tbb::detail::atomic_backoff backoff;
         while (m_flag.test_and_set()) backoff.pause();
+#endif
     }
     bool try_lock() {
+#ifdef PTHREAD_SOLUTION
+        return pthread_mutex_trylock(&g_num_mutex) == 0;
+#else
         return !m_flag.test_and_set();
+#endif
     }
     void unlock() {
+#ifdef PTHREAD_SOLUTION
+        pthread_mutex_unlock(&g_num_mutex);
+#else
         m_flag.clear(std::memory_order_release);
+#endif
     }
 
 public:
+    MallocMutex() = default;
+
+#ifdef PTHREAD_SOLUTION
+    ~MallocMutex() {
+        pthread_mutex_destroy(&g_num_mutex);
+    }
+#endif
+
     class scoped_lock : tbb::detail::no_copy {
         MallocMutex& m_mutex;
         bool m_taken;
