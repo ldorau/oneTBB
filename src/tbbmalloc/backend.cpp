@@ -18,6 +18,9 @@
 #include <errno.h>
 #include "tbbmalloc_internal.h"
 
+#include <unistd.h>
+#include <sys/types.h>
+
 namespace rml {
 namespace internal {
 
@@ -210,6 +213,12 @@ protected:
 };
 
 class FreeBlock : BlockMutexes {
+private:
+    int guard1 = 1234;
+    size_t sizeTmp;    // used outside of backend
+    int guard2 = 5678;
+    int cnt = 0;
+    pthread_mutex_t lock_sizeTmp = PTHREAD_MUTEX_INITIALIZER;
 public:
     static const size_t minBlockSize;
     friend void Backend::IndexedBins::verify();
@@ -218,11 +227,46 @@ public:
                  *next,
                  *nextToFree; // used to form a queue during coalescing
     // valid only when block is in processing, i.e. one is not free and not
-    size_t        sizeTmp;    // used outside of backend
     int           myBin;      // bin that is owner of the block
     bool          slabAligned;
     bool          blockInBin; // this block in myBin already
 
+    void init_vars() {
+        if (cnt != 789) {
+            lock_sizeTmp = PTHREAD_MUTEX_INITIALIZER;
+            guard1 = 1234;
+            guard2 = 5678;
+            cnt = 789;
+        }
+    }
+    void check_guards(int i) {
+        if (guard1 != 1234 || guard2 != 5678) {
+            fprintf(stderr, "%i - G1 %i G2 %i (%i)\n", gettid(), guard1, guard2, i);
+            fflush(stderr);
+        }
+    }
+    size_t get_sizeTmp() {
+        size_t size;
+        init_vars();
+        check_guards(1);
+        pthread_mutex_lock(&lock_sizeTmp);
+        check_guards(2);
+        size = this->sizeTmp;
+        check_guards(3);
+        pthread_mutex_unlock(&lock_sizeTmp);
+        check_guards(4);
+        return size;
+    }
+    void set_sizeTmp(size_t sz) {
+        init_vars();
+        check_guards(5);
+        pthread_mutex_lock(&lock_sizeTmp);
+        check_guards(6);
+        this->sizeTmp = sz;
+        check_guards(7);
+        pthread_mutex_unlock(&lock_sizeTmp);
+        check_guards(8);
+    }
     FreeBlock *rightNeig(size_t sz) const {
         MALLOC_ASSERT(sz, ASSERT_TEXT);
         return (FreeBlock*)((uintptr_t)this+sz);
@@ -328,7 +372,7 @@ inline bool BackendSync::waitTillBlockReleased(intptr_t startModifiedCnt)
 
 void CoalRequestQ::putBlock(FreeBlock *fBlock)
 {
-    MALLOC_ASSERT(fBlock->sizeTmp >= FreeBlock::minBlockSize, ASSERT_TEXT);
+    MALLOC_ASSERT(fBlock->get_sizeTmp() >= FreeBlock::minBlockSize, ASSERT_TEXT);
     fBlock->markUsed();
     // the block is in the queue, do not forget that it's here
     inFlyBlocks++;
@@ -424,7 +468,7 @@ try_next:
                 b->removeBlock(fBlock);
                 if (freeBins[binIdx].empty())
                     bitMask.set(binIdx, false);
-                fBlock->sizeTmp = szBlock;
+                fBlock->set_sizeTmp(szBlock);
                 break;
             } else { // block size is not valid, search for next block in the bin
                 curr->setMeFree(szBlock);
@@ -453,7 +497,7 @@ try_next:
             FreeBlock *next = curr->next;
 
             b->removeBlock(curr);
-            curr->sizeTmp = szBlock;
+            curr->set_sizeTmp(szBlock);
             curr->nextToFree = fBlockList;
             fBlockList = curr;
             curr = next;
@@ -572,7 +616,7 @@ FreeBlock *Backend::splitBlock(FreeBlock *fBlock, int num, size_t size, bool blo
         // Space to use is in the middle
         FreeBlock *newBlock = alignUp(fBlock, slabSize);
         FreeBlock *rightPart = (FreeBlock*)((uintptr_t)newBlock + totalSize);
-        uintptr_t fBlockEnd = (uintptr_t)fBlock + fBlock->sizeTmp;
+        uintptr_t fBlockEnd = (uintptr_t)fBlock + fBlock->get_sizeTmp();
 
         // Return free right part
         if ((uintptr_t)rightPart != fBlockEnd) {
@@ -587,7 +631,7 @@ FreeBlock *Backend::splitBlock(FreeBlock *fBlock, int num, size_t size, bool blo
             coalescAndPut(fBlock, leftSize, toAlignedBin(fBlock, leftSize));
         }
         fBlock = newBlock;
-    } else if (size_t splitSize = fBlock->sizeTmp - totalSize) { // need to split the block
+    } else if (size_t splitSize = fBlock->get_sizeTmp() - totalSize) { // need to split the block
         // GENERAL CASE, cut the left or right part of the block
         FreeBlock *splitBlock = nullptr;
         if (needAlignedBlock) {
@@ -826,7 +870,7 @@ FreeBlock *Backend::genericGetBlock(int num, size_t size, bool needAlignedBlock)
                 return nullptr;
             if (block != (FreeBlock*)VALID_BLOCK_IN_BIN) {
                 // size can be increased in askMemFromOS, that's why >=
-                MALLOC_ASSERT(block->sizeTmp >= size, ASSERT_TEXT);
+                MALLOC_ASSERT(block->get_sizeTmp() >= size, ASSERT_TEXT);
                 break;
             }
             // valid block somewhere in bins, let's find it
@@ -991,7 +1035,7 @@ void *Backend::remap(void *ptr, size_t oldSize, size_t newSize, size_t alignment
 
     regionList.add(region);
     startUseBlock(region, fBlock, /*addToBin=*/false);
-    MALLOC_ASSERT(fBlock->sizeTmp == region->blockSz, ASSERT_TEXT);
+    MALLOC_ASSERT(fBlock->get_sizeTmp() == region->blockSz, ASSERT_TEXT);
     // matched blockConsumed() in startUseBlock().
     // TODO: get rid of useless pair blockConsumed()/blockReleased()
     bkndSync.blockReleased();
@@ -1027,7 +1071,7 @@ void Backend::releaseRegion(MemRegion *memRegion)
 FreeBlock *Backend::doCoalesc(FreeBlock *fBlock, MemRegion **mRegion)
 {
     FreeBlock *resBlock = fBlock;
-    size_t resSize = fBlock->sizeTmp;
+    size_t resSize = fBlock->get_sizeTmp();
     MemRegion *memRegion = nullptr;
 
     fBlock->markCoalescing(resSize);
@@ -1051,12 +1095,12 @@ FreeBlock *Backend::doCoalesc(FreeBlock *fBlock, MemRegion **mRegion)
                 left->blockInBin = true;
                 resBlock = left;
                 resSize += leftSz;
-                resBlock->sizeTmp = resSize;
+                resBlock->set_sizeTmp(resSize);
             }
         }
     }
     // coalescing with right neighbor
-    FreeBlock *right = fBlock->rightNeig(fBlock->sizeTmp);
+    FreeBlock *right = fBlock->rightNeig(fBlock->get_sizeTmp());
     size_t rightSz = right->trySetMeUsed(GuardedSize::COAL_BLOCK);
     if (rightSz != GuardedSize::LOCKED) {
         // LastFreeBlock is on the right side
@@ -1106,7 +1150,7 @@ FreeBlock *Backend::doCoalesc(FreeBlock *fBlock, MemRegion **mRegion)
         *mRegion = memRegion;
     } else
         *mRegion = nullptr;
-    resBlock->sizeTmp = resSize;
+    resBlock->set_sizeTmp(resSize);
     return resBlock;
 }
 
@@ -1126,7 +1170,7 @@ bool Backend::coalescAndPutList(FreeBlock *list, bool forceCoalescQDrop, bool re
         if (!toRet)
             continue;
 
-        if (memRegion && memRegion->blockSz == toRet->sizeTmp
+        if (memRegion && memRegion->blockSz == toRet->get_sizeTmp()
             && !extMemPool->fixedPool) {
             if (extMemPool->regionsAreReleaseable()) {
                 // release the region, because there is no used blocks in it
@@ -1138,7 +1182,7 @@ bool Backend::coalescAndPutList(FreeBlock *list, bool forceCoalescQDrop, bool re
             } else // add block from empty region to end of bin,
                 addToTail = true; // preserving for exact fit
         }
-        size_t currSz = toRet->sizeTmp;
+        size_t currSz = toRet->get_sizeTmp();
         int bin = sizeToBin(currSz);
         bool toAligned = extMemPool->fixedPool ? toAlignedBin(toRet, currSz) : toRet->slabAligned;
         bool needAddToBin = true;
@@ -1162,16 +1206,16 @@ bool Backend::coalescAndPutList(FreeBlock *list, bool forceCoalescQDrop, bool re
             // If the block is too small to fit in any bin, keep it bin-less.
             // It's not a leak because the block later can be coalesced.
             if (currSz >= minBinnedSize) {
-                toRet->sizeTmp = currSz;
+                toRet->set_sizeTmp(currSz);
                 IndexedBins *target = toRet->slabAligned ? &freeSlabAlignedBins : &freeLargeBlockBins;
                 if (forceCoalescQDrop) {
-                    target->addBlock(bin, toRet, toRet->sizeTmp, addToTail);
+                    target->addBlock(bin, toRet, toRet->get_sizeTmp(), addToTail);
                 } else if (!target->tryAddBlock(bin, toRet, addToTail)) {
                     coalescQ.putBlock(toRet);
                     continue;
                 }
             }
-            toRet->sizeTmp = 0;
+            toRet->set_sizeTmp(0);
         }
         // Free (possibly coalesced) free block.
         // Adding to bin must be done before this point,
@@ -1188,7 +1232,7 @@ bool Backend::coalescAndPutList(FreeBlock *list, bool forceCoalescQDrop, bool re
 // processing delayed coalescing requests.
 void Backend::coalescAndPut(FreeBlock *fBlock, size_t blockSz, bool slabAligned)
 {
-    fBlock->sizeTmp = blockSz;
+    fBlock->set_sizeTmp(blockSz);
     fBlock->nextToFree = nullptr;
     fBlock->slabAligned = slabAligned;
 
@@ -1274,8 +1318,8 @@ void Backend::startUseBlock(MemRegion *region, FreeBlock *fBlock, bool addToBin)
         bkndSync.blockConsumed();
         // Understand our alignment for correct splitBlock operation
         fBlock->slabAligned = region->type == MEMREG_SLAB_BLOCKS ? true : false;
-        fBlock->sizeTmp = fBlock->tryLockBlock();
-        MALLOC_ASSERT(fBlock->sizeTmp >= FreeBlock::minBlockSize, "Locking must be successful");
+        fBlock->set_sizeTmp(fBlock->tryLockBlock());
+        MALLOC_ASSERT(fBlock->get_sizeTmp() >= FreeBlock::minBlockSize, "Locking must be successful");
     }
 }
 
